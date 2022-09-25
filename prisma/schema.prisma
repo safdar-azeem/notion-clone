@@ -1,0 +1,29 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator json {
+  provider = "prisma-json-types-generator"
+}
+
+model Document {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  ownerId    String   @db.String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  title      String   @db.String
+  /// [EditorJson]
+  editorJson Json?
+  /// [ImageType]
+  iconImage  Json?
+  /// [ImageType]
+  coverImage Json?
+
+  @@index([ownerId])
+  @@index([ownerId, id])
+}
