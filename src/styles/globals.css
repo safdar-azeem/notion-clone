@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.ProseMirror .is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+.ProseMirror .is-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  @apply sm:w-2;
+}
+/* Track */
+.custom-scroll::-webkit-scrollbar-track {
+  @apply sm:bg-accent/50 dark:bg-gray-600;
+}
+/* Handle */
+.custom-scroll::-webkit-scrollbar-thumb {
+  @apply sm:bg-foreground/30 dark:sm:bg-gray-400;
+}
+/* Handle on hover */
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  @apply sm:bg-foreground/50 dark:sm:bg-gray-300;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 46%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+
+    --border: 0 0% 91.4%;
+    --input: 0 0% 91.4%;
+
+    --primary: 0 0% 7%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 7%;
+
+    --accent: 0 0% 92%;
+    --accent-foreground: 0 0% 7%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 0 0% 65%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 08%;
+    --foreground: 0 0% 92%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 91%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 1%;
+
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+
+    --ring: 0 0% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .hideAfterClerkLoaded {
+    @apply hidden;
+  }
+  .cl-rootBox + .hideAfterClerkLoaded {
+    @apply block;
+  }
+  .centering-absolute {
+    @apply absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2;
+  }
+
+  .closeModal {
+    @apply absolute z-10 top-5 right-14;
+  }
+
+  .text-menu-shadow {
+    @apply shadow-[hsl(var(--foreground)/0.05)_0_0_0_1px,hsl(var(--foreground)/0.08)_0_3px_6px,hsl(var(--foreground)/0.2)_0_9px_24px];
+  }
+
+  @media (max-width: 480px) {
+    .hideAfterClerkLoaded {
+      @apply !left-[36px];
+    }
+
+    .closeModal {
+      @apply top-5 right-8;
+    }
+  }
+
+  @media (max-width: 21em) {
+    .hideAfterClerkLoaded {
+      @apply !left-[24px];
+    }
+    .closeModal {
+      @apply top-5 right-5;
+    }
+  }
+}
